@@ -6,6 +6,7 @@ import { dbConnect } from './database.js';
 import cookieParser from "cookie-parser"
 config({ path: "./config/.env" })
 import router from './router/message.router.js';
+import {ErrorMiddleware} from "./middlewares/error.middleware.js"
 const app = express();
 app.use(cors({
     origin: [process.env.FRONTEND_URL,process.env.DASHBORD_URL],
@@ -24,6 +25,8 @@ app.use(fileUpload({
 })); /// for the handel file upload 
 app.use("/api/v1/message",router);
 dbConnect();
+
+app.use(ErrorMiddleware);
 
 export default app;
 
