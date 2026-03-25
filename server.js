@@ -6,10 +6,7 @@ cloudinary.v2.config({ // here we are configuring the cloudinary with the creden
     api_key:process.env.CLOUDINARY_API_KEY,
     api_secret:process.env.CLOUDINSRY_API_SECRET
 })
-
-
 const port = process.env.PORT || 3600;
-
 app.listen(port,()=>{
     console.log(`Server listeing on ${port} port `)
 })

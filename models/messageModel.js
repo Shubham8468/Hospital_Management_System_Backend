@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const messageSchema=new mongoose.Schema({
-    fullName:{
+    firstName:{
         type:String,
         required:true,
         minLength:[3,"First Name Must Contain At Least 3 Characters!"]
@@ -14,13 +14,16 @@ const messageSchema=new mongoose.Schema({
     email:{
         type:String,
         required:true,
-        validate:[validator.isEmail,"Please Provied a valid Email!"]
+        validate: [
+            (value) => /^\S+@\S+\.\S+$/.test(value),
+            "Please Provied a valid Email!"
+        ]
     },
     phone:{
           type:String,
           required:true,
-          minLength:[11,"Phone Number Must Contains Exact 11 Digits!"],
-          maxLength:[11,"Phone Number Must Contains Exact 11 Digits!"],
+          minLength:[10,"Phone Number Must Contains Exact 11 Digits!"],
+          maxLength:[10,"Phone Number Must Contains Exact 11 Digits!"],
     },
     message:{
         type:String,
