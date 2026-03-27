@@ -19,12 +19,12 @@ export const isAdminAuthenticated = catchAsyncError(async (req, resp, next) => {
 
 
 export const isPatientAuthenticated = catchAsyncError(async (req, resp, next) => {
-    const token = req.cookies.patientToken; // First we get admin Token 
+    const token = req.cookies.patienttoken; // First we get patient Token 
     if (!token) {
         return next(new ErrorHandler("Patient Not Authenticated!", 400));
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);//// then check token is verify or not
-    req.user = await User.findById(decoded.id);
+    req.user = await User.findById(decoded.id);// ab req me user ko add kr dege 
     if (req.user.role !== "Patient") {
         return next(new ErrorHandler(`${req.user.role} not authorized for this resources!`, 403))
     }

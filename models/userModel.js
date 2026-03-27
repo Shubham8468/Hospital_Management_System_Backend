@@ -79,9 +79,8 @@ const userSchema = new mongoose.Schema({
          public_id:String,
          url:String
     }
-
-
 })
+
 
 userSchema.pre("save", async function(next){
     if(!this.isModified("password")){
