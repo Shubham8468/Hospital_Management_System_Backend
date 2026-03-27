@@ -13,11 +13,11 @@ export const ErrorMiddleware=(err,req,resp,next)=>{
         err=new ErrorHandler(message,400)
     }
     if(err.name ==="JsonWebTokenError"){
-        err.message="Json Web Token is Invalid, Try Again!.",
+        const message="Json Web Token is Invalid, Try Again!.";
         err=new ErrorHandler(message,400)
     }
-    if(err.name==="JsonWebTokenError"){
-        err.message="Json Web Token is Expaird, Try Again!."
+    if(err.name==="TokenExpiredError"){
+        const message="Json Web Token is Expaird, Try Again!.";
         err= new ErrorHandler(message,400)
     }
    
@@ -27,12 +27,12 @@ export const ErrorMiddleware=(err,req,resp,next)=>{
 //          . Most commonly → invalid ObjectId
 
         const message=`Invalid ${err.path}`; //err.path → tells which field caused the error
-        err=new Object(message,400)
+        err=new ErrorHandler(message,400)
     }
 
     // ab ye sb server ko response kra denge
     // ye hm keval error message ko extract krne ke liye kiye hai
-    const errorMessage=err.errors ? Object.values(err.errors).map((error)=>error.message).join(" "):err.message
+    const errorMessage=err.errors ? Object.values(err.errors).map((error)=>error.message).join(" ,"):err.message
 
     return resp.status(err.statusCode).json({success:false,message:errorMessage})
 
