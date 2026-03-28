@@ -8,6 +8,7 @@ config({ path: "./config/.env" })
 import router from './router/message.router.js';
 import {ErrorMiddleware} from "./middlewares/error.middleware.js"
 import userRouter from './router/user.router.js';
+import appointmentRouter from './router/appointment.router.js';
 const app = express();
 app.use(cors({
     origin: [process.env.FRONTEND_URL,process.env.DASHBORD_URL],
@@ -25,7 +26,8 @@ app.use(fileUpload({
     tempFileDir:"/tmp/"
 })); /// for the handel file upload 
 app.use("/api/v1/message",router);
-app.use("/api/v1/user",userRouter)
+app.use("/api/v1/user",userRouter);
+app.use("/api/v1/appointment",appointmentRouter);
 dbConnect();
 
 app.use(ErrorMiddleware);
