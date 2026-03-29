@@ -8,6 +8,9 @@ export const sendMessage = catchAsyncError (async (req, resp, next) => {
         if (!firstName || !lastName || !email || !phone || !message) {
             return next(new ErrorHandler("Please Fill Full Form!.",400))
         }
+        if(phone.length!=10){
+            return next(new ErrorHandler("Please Enter 10 Digite Number",400))
+        }
 
         const messageStore = await Message.create({ firstName, lastName, email, phone, message });
         if (!messageStore) {
