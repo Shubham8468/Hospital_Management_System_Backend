@@ -1,11 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Hospital Management System Backend",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "nodemon ./server.js"
+    "dev": "nodemon ./server.js",
+    "start": "node ./server.js"
   },
   "author": "Shubham",
   "license": "ISC",
