@@ -11,7 +11,7 @@ import userRouter from './router/user.router.js';
 import appointmentRouter from './router/appointment.router.js';
 const app = express();
 app.use(cors({
-    origin: [process.env.FRONTEND_URL,process.env.DASHBORD_URL],
+    origin: [process.env.FRONTEND_URL,process.env.DASHBORD_URL,"https://hospital-management-system-frontend-ten.vercel.app"],
     methods:["GET","POST","PUT","DELETE"],
     credentials:true
 }
